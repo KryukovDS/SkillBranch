@@ -1,0 +1,31 @@
+# Mac OS X
+__MACOSX/
+.DS_Store*
+
+# Windows
+Thumbs.db
+
+# Утилиты и конфиги
+web.config
+phpMyAdmin/
+.git/
+.ssh/
+.idea/
+
+# Тестовые разделы, логи, верстка, прототипы
+nogit/
+test/
+logs/
+*.log
+
+# Composer
+# composer.lock
+composer.phar
+vendor/
+
+# WebPack
+webpack-assets.json
+
+# Bower и Node.js
+node_modules/
+bower_components/
