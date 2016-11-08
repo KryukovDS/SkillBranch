@@ -9,6 +9,7 @@
   "author": "Дмитрий Крюков <SinFx@ya.ru>",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.1",
     "express": "^4.14.0",
     "skb": "^1.0.0"
   }
