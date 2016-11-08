@@ -2,13 +2,22 @@ var express = require('express');
 var app = express();
 
 app.get('/', function(req, res) {
-    const a = req.query.hasOwnProperty('a') ? parseFloat(req.query['a']) || 0 : 0;
-    const b = req.query.hasOwnProperty('b') ? parseFloat(req.query['b']) || 0 : 0;
-    const result = a + b;
+    var result = [];
+    var fullname = req.query.hasOwnProperty('fullname') ? req.query['fullname'] : '';
+    var initials = fullname.split(' ');
+    
+    if (initials.length && initials.length <= 3) {
+        initials.length && result.push(initials.pop());
+        initials.length && result.push(initials.shift().substr(0, 1) + '.');
+        initials.length && result.push(initials.pop().substr(0, 1) + '.');
+    }
+    
+    result.length === 0 && result.push('Invalid fullname');
 
-    res.send('Ваши рабы посчитали сумму чисел a(' + a + ') и b(' + b + '), она составляет: ' + result + ', хозяин!');
+    console.log('Full name: "' + fullname + '", result: "' + result.join(' ') + '".');
+    res.send(result.join(' '));
 });
 
-app.listen(3000, function () {
+app.listen(80, function () {
     console.log('Слушаю порт 3000, хозяин!');
 });
