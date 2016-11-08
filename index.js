@@ -1,6 +1,14 @@
-var Skb = require('skb');
+var express = require('express');
+var app = express();
 
-var token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ODFhMjBkMjZmZjc3NjAwMTJiNjc4M2QiLCJ1c2VybmFtZSI6InNpbmZ4QHlhLnJ1Iiwicm9sZSI6InVzZXIiLCJpYXQiOjE0NzgxMDczNDh9.VzS5r0jfFaYdtJdVOfa9w2A8y_8Vpr2PtGf2u0rV5BA';
-var skb = new Skb(token);
+app.get('/', function(req, res) {
+    const a = req.query.hasOwnProperty('a') ? parseFloat(req.query['a']) || 0 : 0;
+    const b = req.query.hasOwnProperty('b') ? parseFloat(req.query['b']) || 0 : 0;
+    const result = a + b;
 
-skb.taskHelloWorld('Все идет по плану');
+    res.send('Ваши рабы посчитали сумму чисел a(' + a + ') и b(' + b + '), она составляет: ' + result + ', хозяин!');
+});
+
+app.listen(3000, function () {
+    console.log('Слушаю порт 3000, хозяин!');
+});
