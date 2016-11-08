@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+var port = 80;
 
 app.get('/', function(req, res) {
     var result = [];
@@ -18,6 +19,6 @@ app.get('/', function(req, res) {
     res.send(result.join(' '));
 });
 
-app.listen(80, function () {
-    console.log('Слушаю порт 3000, хозяин!');
+app.listen(port, function () {
+    console.log('Слушаю порт ' + port + ', хозяин!');
 });
