@@ -1,16 +1,21 @@
 var express = require('express');
+var fs = require('fs');
 var cors = require('cors');
 var colors = require('colors/safe');
 
 var app = express();
 var port = 80;
 
-var lessons = {};
+/**
+ * Получаем обработчики уроков из модулей в разделе lessons
+ * @type {{}}
+ */
 
-lessons['/2a/'] = require('./lessons/2a/');
-lessons['/2b/'] = require('./lessons/2b/');
-lessons['/fake2b/'] = require('./lessons/2b-fake/');
-lessons['/2c/'] = require('./lessons/2c/');
+var lessons = {};
+fs.readdirSync('./lessons').forEach(function (file) {
+    var patch = './lessons/' + file;
+    fs.statSync(patch).isDirectory() && (lessons['/lessons/' + file + '.html'] = require(patch));
+});
 
 app.use(cors());
 app.listen(port, function () {

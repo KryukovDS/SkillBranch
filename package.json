@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "nodemon": "node node_modules/nodemon/bin/nodemon index.js"
   },
   "author": "Дмитрий Крюков <SinFx@ya.ru>",
   "license": "ISC",
@@ -12,6 +12,7 @@
     "colors": "^1.1.2",
     "cors": "^2.8.1",
     "express": "^4.14.0",
+    "nodemon": "^1.11.0",
     "skb": "^1.0.0"
   }
 }
