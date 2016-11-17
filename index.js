@@ -14,7 +14,11 @@ var port = 80;
 var lessons = {};
 fs.readdirSync('./lessons').forEach(function (file) {
     var patch = './lessons/' + file;
-    fs.statSync(patch).isDirectory() && (lessons['/lessons/' + file + '.html'] = require(patch));
+    if (fs.statSync(patch).isDirectory()) {
+        var lesson = require(patch);
+        var url = '/lessons/' + file + '/';
+        lessons[url] = lesson;
+    }
 });
 
 app.use(cors());
@@ -27,10 +31,8 @@ app.listen(port, function () {
 
 for (let url in lessons) {
     if (lessons.hasOwnProperty(url)) {
-        app.get(url, function(req, res) {
-            var handler = lessons[url];
-            var result = handler(req);
-            res.status(200).send(result.toString());
+        app.get(url + (lessons[url].url || ''), function(req, res) {
+            lessons[url].handler(req, res, url);
         });
     }
 }

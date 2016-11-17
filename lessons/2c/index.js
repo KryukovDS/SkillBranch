@@ -13,14 +13,17 @@
  */
 
 var colors = require('colors/safe');
-var lesson = function (req) {
-    var result, query;
-    
-    query =  req.query.hasOwnProperty('username') ? req.query['username'] : '';
-    result = query.replace(/^(?:[^:]*:)?(?:\/{2})?(?:[^\/]*(?=\/))?\/?@?([^\/\?#]*).*/, '@$1');
+var Lesson = function () {
+    this.url = '';
+    this.handler = function (req, res, url) {
+        var result, query;
 
-    console.log('Запрос: "' + colors.green(query) + '", результат: "' + colors.green(result) + '".');
-    return result;
+        query = req.query.hasOwnProperty('username') ? req.query['username'] : '';
+        result = query.replace(/^(?:[^:]*:)?(?:\/{2})?(?:[^\/]*(?=\/))?\/?@?([^\/\?#]*).*/, '@$1');
+
+        console.log('Запрос: "' + colors.green(query) + '", результат: "' + colors.green(result) + '".');
+        res.status(200).send(result.toString());
+    };
 };
 
-module.exports = lesson;
+module.exports = new Lesson();

@@ -18,10 +18,13 @@ var fake = {
     "иГоРь аЛексАндРовиЧ сУвороВ": "Суворов И. А."
 };
 
-var lesson = function (req) {
-    var result = fake[req.query['fullname']] || "Invalid fullname";
-    console.log('Полное имя: "' + (req.query['fullname'] || '') + '", результат: "' + result + '".');
-    return result;
+var Lesson = function () {
+    this.url = '';
+    this.handler = function (req, res, url) {
+        var result = fake[req.query['fullname']] || "Invalid fullname";
+        console.log('Полное имя: "' + (req.query['fullname'] || '') + '", результат: "' + result + '".');
+        res.status(200).send(result.toString());
+    };
 };
 
-module.exports = lesson;
+module.exports = new Lesson();
