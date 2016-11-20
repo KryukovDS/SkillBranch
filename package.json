@@ -9,6 +9,7 @@
   "author": "Дмитрий Крюков <SinFx@ya.ru>",
   "license": "ISC",
   "dependencies": {
+    "color-convert": "^1.8.2",
     "colors": "^1.1.2",
     "cors": "^2.8.1",
     "express": "^4.14.0",
